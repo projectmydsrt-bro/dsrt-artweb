@@ -73,3 +73,17 @@ body{background:linear-gradient(180deg,#061018 0%, var(--bg) 100%);color:#e6eef8
   .search{min-width:120px}
   .grid{grid-template-columns:repeat(2,1fr)}
            }
+.car-track {
+  display:flex;
+  gap:14px;
+  padding:16px;
+  transition:transform .36s cubic-bezier(.2,.9,.2,1), opacity .6s ease-in-out;
+  align-items:center;
+}
+.car-slide img {
+  transition: transform .4s ease-in-out, filter .4s ease-in-out;
+}
+.car-slide:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.15);
+}
