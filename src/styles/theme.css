@@ -1,0 +1,10 @@
+body {
+  background: var(--color-background);
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  transition: background var(--transition-default);
+}
+
+.dark body {
+  background: #020617;
+}
