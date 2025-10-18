@@ -1,62 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DSRT Games — HTML5 Portal</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 🌓 THEME TOGGLE -->
-  <div class="theme-toggle">
-    <button id="themeBtn">🌙 Dark Mode</button>
-  </div>
-
   <header class="navbar">
-    <h1><span>DSRT</span> Games</h1>
-    <input type="text" placeholder="Cari game..." id="search">
+    <h1 class="brand">🎮 DSRT Games</h1>
+    <button id="darkModeToggle" class="dark-btn">🌙 Dark Mode</button>
   </header>
 
-  <!-- 🧭 TABS -->
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="all">🎮 All Games</button>
-    <button class="tab-btn" data-tab="favorites">❤️ Favorites</button>
+  <!-- Search & Tabs -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Cari game..." />
   </div>
 
-  <!-- 🌟 FEATURED -->
+  <!-- Category Tabs -->
+  <div class="tabs categories">
+    <button class="tab-btn active" data-tab="all">🎲 All Games</button>
+    <button class="tab-btn" data-tab="favorites">❤️ Favorites</button>
+    <button class="tab-btn" data-tab="popular">🔥 Popular</button>
+    <button class="tab-btn" data-tab="newest">🆕 Newest</button>
+  </div>
+
+  <!-- Featured Section -->
   <section class="featured">
     <h2>🌟 Game Unggulan</h2>
-    <div class="featured-container"></div>
+    <div id="featuredGames" class="game-grid"></div>
   </section>
 
-  <!-- 🔥 ALL GAMES -->
+  <!-- Best Section -->
   <section class="best">
     <h2>🔥 Pilihan Terbaik untuk Anda</h2>
-    <div class="game-grid"></div>
+    <div id="allGames" class="game-grid"></div>
   </section>
 
-  <!-- ❤️ FAVORITES -->
+  <!-- Favorites Section -->
   <section class="favorites" style="display:none;">
-    <h2>❤️ My Favorite Games</h2>
-    <div class="fav-grid"></div>
+    <h2>❤️ Favorit Anda</h2>
+    <div id="favoriteGames" class="game-grid"></div>
   </section>
 
-  <!-- 🎮 GAME MODAL -->
+  <!-- Leaderboard Section -->
+  <section class="leaderboard-section" style="display:none;">
+    <h2>🏆 Leaderboard</h2>
+    <div class="leaderboard-grid" id="leaderboardGrid"></div>
+  </section>
+
+  <!-- Modal Game Preview -->
   <div id="gameModal" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <button id="closeModal">✖</button>
-        <button id="fullscreenBtn">⛶</button>
+      <span class="close">&times;</span>
+      <h3 class="modal-title">Game Preview</h3>
+      <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
+      <div class="modal-buttons">
+        <button id="fullscreenBtn">⛶ Fullscreen</button>
         <button id="backBtn">⬅️ Back to Menu</button>
       </div>
-      <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
   <footer>
-    © DSRT Games — HTML5 Portal
+    <p>© DSRT Games — HTML5 Portal</p>
   </footer>
 
-  <script src="games.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
