@@ -13,20 +13,36 @@
 <body>
   <div id="hud">Score: <span id="score">0</span></div>
   <canvas id="game" width="600" height="400"></canvas>
+
   <script>
     const c = document.getElementById('game');
     const ctx = c.getContext('2d');
-    let player = {x:50, y:340, w:30, h:30, vy:0, jump:-9, grounded:true};
-    let obstacles = [];
-    let score = 0;
     const scoreEl = document.getElementById('score');
+    
+    let player = {x:50,y:340,w:30,h:30,vy:0,jump:-9,grounded:true};
+    let obstacles = [];
+    let particles = [];
+    let score = 0;
+    let frame = 0;
 
-    function spawnObstacle(){
-      const size = 30 + Math.random()*20;
-      obstacles.push({x:600, y:370-size, w:size, h:size});
+    // --- Audio ---
+    const jumpSound = new Audio('https://cdn.jsdelivr.net/gh/naptha/tiny-sound-examples/jump.wav');
+    const hitSound = new Audio('https://cdn.jsdelivr.net/gh/naptha/tiny-sound-examples/hit.wav');
+    const scoreSound = new Audio('https://cdn.jsdelivr.net/gh/naptha/tiny-sound-examples/coin.wav');
+
+    // --- Particle System ---
+    function spawnParticles(x,y,color){
+      for(let i=0;i<8;i++){
+        particles.push({x,y,dx:(Math.random()-0.5)*4,dy:(Math.random()-0.5)*4,life:40,color});
+      }
     }
 
-    let frame = 0;
+    // --- Obstacle spawn ---
+    function spawnObstacle(){
+      const size = 30 + Math.random()*20;
+      obstacles.push({x:600,y:370-size,w:size,h:size});
+    }
+
     function loop(){
       frame++;
       ctx.clearRect(0,0,600,400);
@@ -52,9 +68,19 @@
         if(o.x+o.w<0) obstacles.splice(i,1);
         // collision
         if(o.x<player.x+player.w && o.x+o.w>player.x && o.y<player.y+player.h){
+          hitSound.play();
           alert('Game Over! Skor: '+score);
           location.reload();
         }
+      }
+
+      // draw particles
+      for(let i=particles.length-1;i>=0;i--){
+        const p=particles[i];
+        p.x+=p.dx; p.y+=p.dy; p.life--;
+        ctx.fillStyle=p.color;
+        ctx.fillRect(p.x,p.y,3,3);
+        if(p.life<=0) particles.splice(i,1);
       }
 
       // draw player
@@ -62,9 +88,8 @@
       ctx.fillRect(player.x,player.y,player.w,player.h);
 
       // score
-      if(frame%30==0) score++;
-      scoreEl.textContent = score;
-
+      if(frame%30==0){score++;scoreEl.textContent=score;scoreSound.play();}
+      
       requestAnimationFrame(loop);
     }
 
@@ -72,10 +97,18 @@
       if((e.code==='Space'||e.code==='ArrowUp') && player.grounded){
         player.vy = player.jump;
         player.grounded = false;
+        jumpSound.play();
+        spawnParticles(player.x+player.w/2, player.y+player.h, "#7afcff");
       }
     });
+
     c.addEventListener('click',()=>{
-      if(player.grounded){player.vy = player.jump;player.grounded=false;}
+      if(player.grounded){
+        player.vy = player.jump;
+        player.grounded=false;
+        jumpSound.play();
+        spawnParticles(player.x+player.w/2, player.y+player.h, "#7afcff");
+      }
     });
 
     loop();
