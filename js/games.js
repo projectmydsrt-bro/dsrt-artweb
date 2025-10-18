@@ -148,3 +148,87 @@ function autoTheme() {
 }
 
 autoTheme();
+// === ❤️ FAVORITES SYSTEM ===
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+// Tambah ikon hati di setiap kartu
+function createCardWithFavorite(game) {
+  const card = document.createElement("div");
+  card.className = "game-card";
+  card.innerHTML = `
+    <div style="position: relative;">
+      <img src="${game.img}" alt="${game.title}">
+      <span class="favorite-icon ${favorites.includes(game.title) ? 'active' : ''}" title="Add to favorites">❤️</span>
+    </div>
+    <h3>${game.title}</h3>
+  `;
+
+  const favIcon = card.querySelector(".favorite-icon");
+  favIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleFavorite(game.title);
+    favIcon.classList.toggle("active");
+    renderFavorites();
+  });
+
+  card.addEventListener("click", () => openModal(game.url));
+  return card;
+}
+
+// Render ulang game dengan ikon favorite
+function renderGamesWithFavorites() {
+  const featured = document.querySelector(".featured-container");
+  const best = document.querySelector(".game-grid");
+  featured.innerHTML = "";
+  best.innerHTML = "";
+  games.slice(0, 2).forEach(game => featured.appendChild(createCardWithFavorite(game)));
+  games.forEach(game => best.appendChild(createCardWithFavorite(game)));
+}
+
+// Simpan/hapus favorit
+function toggleFavorite(title) {
+  if (favorites.includes(title)) {
+    favorites = favorites.filter(f => f !== title);
+  } else {
+    favorites.push(title);
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+// Render tampilan favorit
+function renderFavorites() {
+  const favGrid = document.querySelector(".fav-grid");
+  favGrid.innerHTML = "";
+  const favGames = games.filter(game => favorites.includes(game.title));
+
+  if (favGames.length === 0) {
+    favGrid.innerHTML = `<p style="text-align:center;opacity:0.6;">No favorites yet ❤️</p>`;
+  } else {
+    favGames.forEach(game => favGrid.appendChild(createCardWithFavorite(game)));
+  }
+}
+
+// === TABS SWITCHING ===
+const tabs = document.querySelectorAll(".tab-btn");
+const allSection = document.querySelector(".best");
+const favSection = document.querySelector(".favorites");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    const tabType = tab.dataset.tab;
+    if (tabType === "all") {
+      allSection.style.display = "block";
+      favSection.style.display = "none";
+    } else {
+      allSection.style.display = "none";
+      favSection.style.display = "block";
+      renderFavorites();
+    }
+  });
+});
+
+// Jalankan versi baru dengan sistem favorites
+document.addEventListener("DOMContentLoaded", renderGamesWithFavorites);
