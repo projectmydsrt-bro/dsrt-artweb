@@ -1,21 +1,23 @@
-export default function GameCard({ game, onPlay }) {
+import React from 'react'
+import { motion } from 'framer-motion'
+
+export default function GameCard({ game, onClick }) {
   return (
-    <div className="relative group bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300">
+    <motion.div
+      layout
+      whileHover={{ scale: 1.05 }}
+      onClick={() => onClick(game)}
+      className="cursor-pointer bg-neutral-800 hover:bg-neutral-700 rounded-xl overflow-hidden shadow-lg transition"
+    >
       <img
-        src={game.thumbnail}
+        src={game.thumbnail_url}
         alt={game.title}
-        className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300"
+        className="w-full h-48 object-cover"
       />
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-white truncate">{game.title}</h3>
-        <p className="text-gray-400 text-sm line-clamp-2">{game.description}</p>
+      <div className="p-3">
+        <h3 className="font-semibold text-lg truncate">{game.title}</h3>
+        <p className="text-sm text-gray-400 truncate">{game.category}</p>
       </div>
-      <button
-        onClick={onPlay}
-        className="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center text-lg font-semibold opacity-0 group-hover:opacity-100 transition duration-300"
-      >
-        ▶ Play
-      </button>
-    </div>
-  );
+    </motion.div>
+  )
 }
