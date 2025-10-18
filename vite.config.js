@@ -8,3 +8,10 @@ export default defineConfig({
     port: 5173,
   },
 });
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+}
+"vite": "^5.3.1",
+"@vitejs/plugin-react": "^4.0.0"
