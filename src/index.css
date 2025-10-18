@@ -2,24 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* design tokens & small utilities */
-:root {
-  --cgm-500: #7C3AED;
-  --cgm-300: #9be7ff;
-  --surface: #1E1B4B;
-  --bg: #0F172A;
-  --glass: rgba(255,255,255,0.04);
-}
-
-/* custom small classes */
 body {
-  background: linear-gradient(180deg, var(--bg) 0%, #0b0813 100%);
-  color: #fff;
+  background-color: #0b0d12;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
 }
 
-/* small helper for glass cards */
-.card-glass {
-  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.04);
-  backdrop-filter: blur(6px);
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #06b6d4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1016;
 }
