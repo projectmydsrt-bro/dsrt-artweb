@@ -3,60 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSRT Games Platform</title>
+  <title>DSRT Games — HTML5 Portal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- 🌓 THEME TOGGLE BUTTON -->
+  <!-- 🌓 THEME TOGGLE -->
   <div class="theme-toggle">
     <button id="themeBtn">🌙 Dark Mode</button>
   </div>
 
-  <!-- 🔹 NAVBAR -->
-  <nav class="navbar">
-    <h1>DSRT GAMES</h1>
-  </nav>
+  <header class="navbar">
+    <h1><span>DSRT</span> Games</h1>
+    <input type="text" placeholder="Cari game..." id="search">
+  </header>
 
-  <!-- 🧭 NAVIGATION TABS -->
-<div class="tabs">
-  <button class="tab-btn active" data-tab="all">All Games</button>
-  <button class="tab-btn" data-tab="favorites">❤️ Favorites</button>
-</div>
+  <!-- 🧭 TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="all">🎮 All Games</button>
+    <button class="tab-btn" data-tab="favorites">❤️ Favorites</button>
+  </div>
 
-  <!-- 🔹 FEATURED SECTION -->
+  <!-- 🌟 FEATURED -->
   <section class="featured">
-    <h2>🔥 Featured Games</h2>
+    <h2>🌟 Game Unggulan</h2>
     <div class="featured-container"></div>
   </section>
 
-  <!-- 🔹 BEST GAMES -->
+  <!-- 🔥 ALL GAMES -->
   <section class="best">
-    <!-- ❤️ FAVORITES SECTION -->
-<section class="favorites" style="display: none;">
-  <h2>❤️ My Favorite Games</h2>
-  <div class="fav-grid"></div>
-</section>
-    <h2>🎮 All Games</h2>
+    <h2>🔥 Pilihan Terbaik untuk Anda</h2>
     <div class="game-grid"></div>
   </section>
 
-  <!-- 🔹 GAME MODAL -->
-  <div class="modal" id="gameModal">
+  <!-- ❤️ FAVORITES -->
+  <section class="favorites" style="display:none;">
+    <h2>❤️ My Favorite Games</h2>
+    <div class="fav-grid"></div>
+  </section>
+
+  <!-- 🎮 GAME MODAL -->
+  <div id="gameModal" class="modal">
     <div class="modal-content">
-      <button class="close-btn" id="closeModal">✖</button>
-      <button class="fullscreen-btn" id="fullscreenBtn">⛶</button>
-
-      <!-- 🟣 BACK BUTTON -->
-      <button class="back-btn" id="backBtn">🔙 Back to Menu</button>
-
-      <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-        <p>Loading Game...</p>
+      <div class="modal-header">
+        <button id="closeModal">✖</button>
+        <button id="fullscreenBtn">⛶</button>
+        <button id="backBtn">⬅️ Back to Menu</button>
       </div>
-
       <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
+
+  <footer>
+    © DSRT Games — HTML5 Portal
+  </footer>
 
   <script src="games.js"></script>
 </body>
