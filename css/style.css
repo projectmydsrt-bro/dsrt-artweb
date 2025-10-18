@@ -1,0 +1,49 @@
+/* Pure new project CSS — no relation to any prior project */
+/* Simple clean layout for desktop & mobile */
+
+:root{
+  --bg:#0b1220;
+  --panel:#0f1724;
+  --muted:#94a3b8;
+  --accent:#f6c94a;
+  --white:#eef2ff;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+body{background:linear-gradient(180deg,#06111a 0%,var(--bg) 100%);color:var(--white);-webkit-font-smoothing:antialiased;}
+
+.wrap{max-width:1100px;margin:0 auto;padding:12px 20px}
+.topbar{border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(4px)}
+.title{margin:0;font-size:20px;color:var(--accent);display:inline-block}
+.menu{float:right}
+.menu .btn{margin-left:8px}
+
+/* Buttons */
+.btn{background:var(--accent);color:#091018;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+
+/* Layout */
+.main{display:grid;grid-template-columns: 1fr 320px;gap:18px;padding:20px;align-items:start}
+@media(max-width:920px){.main{grid-template-columns:1fr}}
+.game-area{position:relative;display:flex;flex-direction:column;align-items:center}
+canvas{width:100%;max-width:100%;border-radius:10px;box-shadow:0 14px 40px rgba(2,6,23,0.6);background:linear-gradient(180deg,#071827,#05202b)}
+.hud{position:absolute;left:18px;top:18px;display:flex;gap:12px}
+.hud .score,.hud .info{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:8px;font-weight:700}
+
+/* Sidebar */
+.panel{padding-right:6px}
+.card{background:var(--panel);padding:14px;border-radius:10px;margin-bottom:14px;box-shadow:0 8px 18px rgba(2,6,23,0.5)}
+.instructions ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+.leaderboard ol{padding-left:18px;margin:0 0 8px 0}
+
+/* Form */
+.score-form{display:flex;gap:8px;flex-direction:column}
+.score-form input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+.score-form button{align-self:flex-start}
+
+/* Footer */
+.foot{padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);text-align:center;color:rgba(255,255,255,0.5)}
+
+/* Small helpers */
+kbd{background:rgba(255,255,255,0.04);padding:2px 6px;border-radius:6px;font-size:13px}
