@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450">
+  <rect width="100%" height="100%" fill="#4b2b67"/>
+  <text x="36" y="72" fill="#fff" font-size="36" font-weight="700">Tong Hop</text>
+  <rect x="40" y="120" width="200" height="200" rx="12" fill="#2b1a3b"/>
+  <text x="36" y="350" fill="#cbd" font-size="14">Puzzle • Family</text>
+</svg>
