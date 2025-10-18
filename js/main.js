@@ -5,3 +5,12 @@ const GAMES = [
   { id: 'g3', title: 'Pixel Battler', category: 'Action', thumb: 'assets/images/cover3.svg', url: 'about:blank' },
   { id: 'g4', title: 'Sky Blocks', category: 'Casual', thumb: 'assets/images/placeholder.png', url: 'about:blank' },
 ];
+/* Parallax carousel animation */
+let carOffset = 0;
+function animateCarousel(){
+  carOffset += 0.2;
+  carTrack.style.transform = `translateX(${-slideIndex*340 + Math.sin(carOffset/20)*10}px)`;
+  carTrack.style.opacity = 0.85 + 0.15*Math.sin(carOffset/30);
+  requestAnimationFrame(animateCarousel);
+}
+animateCarousel();
