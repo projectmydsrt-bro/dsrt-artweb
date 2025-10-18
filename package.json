@@ -1,0 +1,26 @@
+
+{
+  "name": "dsrt-games-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "npx tailwindcss -v >/dev/null 2>&1 || true"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.46.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "tailwindcss": "^3.3.3",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.31"
+  }
+}
+JSON
