@@ -1,16 +1,40 @@
-const GAMES = [
-  { id: 'block', title: 'Block Jumper', category: 'Arcade', thumb: 'games/block-jumper/cover.png', url: 'games/block-jumper/index.html' },
-  { id: 'g1', title: 'Pumpkin Dash', category: 'Arcade', thumb: 'assets/images/cover1.svg', url: 'about:blank' },
-  { id: 'g2', title: 'Tong Hop', category: 'Puzzle', thumb: 'assets/images/cover2.svg', url: 'about:blank' },
-  { id: 'g3', title: 'Pixel Battler', category: 'Action', thumb: 'assets/images/cover3.svg', url: 'about:blank' },
-  { id: 'g4', title: 'Sky Blocks', category: 'Casual', thumb: 'assets/images/placeholder.png', url: 'about:blank' },
-];
-/* Parallax carousel animation */
-let carOffset = 0;
-function animateCarousel(){
-  carOffset += 0.2;
-  carTrack.style.transform = `translateX(${-slideIndex*340 + Math.sin(carOffset/20)*10}px)`;
-  carTrack.style.opacity = 0.85 + 0.15*Math.sin(carOffset/30);
-  requestAnimationFrame(animateCarousel);
+const featuredContainer = document.getElementById('featuredContainer');
+const gameGrid = document.getElementById('gameGrid');
+const searchInput = document.getElementById('searchInput');
+
+// Tampilkan featured games
+featuredContainer.innerHTML = games
+  .filter(g => g.featured)
+  .map(g => `
+    <div class="feature-card" onclick="openGame('${g.url}')">
+      <img src="${g.image}" alt="${g.title}">
+      <div class="info">
+        <h3>${g.title}</h3>
+      </div>
+    </div>
+  `)
+  .join('');
+
+// Tampilkan semua game
+function renderGames(filter="") {
+  const filtered = games.filter(g =>
+    g.title.toLowerCase().includes(filter.toLowerCase())
+  );
+  gameGrid.innerHTML = filtered.map(g => `
+    <div class="game-card" onclick="openGame('${g.url}')">
+      <img src="${g.image}" alt="${g.title}">
+      <h4>${g.title}</h4>
+    </div>
+  `).join('');
 }
-animateCarousel();
+renderGames();
+
+searchInput.addEventListener('input', e => renderGames(e.target.value));
+
+function openGame(url){
+  if(url && url !== "#"){
+    window.location.href = url;
+  } else {
+    alert("Game ini belum tersedia!");
+  }
+}
