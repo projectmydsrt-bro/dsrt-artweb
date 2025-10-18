@@ -204,3 +204,63 @@ body.light-mode #themeBtn {
   background: rgba(0, 0, 0, 0.1);
   color: #222;
   }
+/* === TABS === */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: #1b1b1b;
+  padding: 10px 0;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab-btn.active {
+  background: #444;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* === FAVORITE ICON === */
+.favorite-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.3rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.favorite-icon.active {
+  color: #ff3366;
+}
+
+/* === FAVORITES SECTION === */
+.favorites {
+  padding: 40px 20px;
+}
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
