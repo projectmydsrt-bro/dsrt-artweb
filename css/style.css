@@ -204,31 +204,73 @@ body.light-mode #themeBtn {
   background: rgba(0, 0, 0, 0.1);
   color: #222;
   }
-/* === TABS === */
-.tabs {
+/* === GLOBAL === */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #0c0c0f;
+  color: #f0b775;
+  transition: background 0.5s, color 0.5s;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+/* === NAVBAR === */
+.navbar {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  background: #1b1b1b;
-  padding: 10px 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #111;
+  color: #f5b971;
 }
 
-.tab-btn {
-  background: rgba(255, 255, 255, 0.1);
+.navbar span {
+  color: #ffb84e;
+}
+
+#search {
+  background: #222;
   border: none;
-  color: #fff;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 8px;
+  color: #fff;
+}
+
+/* === GAME GRID === */
+.featured-container, .game-grid, .fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.game-card {
+  position: relative;
+  background: #1a1a1d;
+  border-radius: 12px;
+  overflow: hidden;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform 0.25s, background 0.3s;
 }
 
-.tab-btn.active {
-  background: #444;
+.game-card:hover {
+  transform: translateY(-5px);
+  background: #252528;
 }
 
-.tab-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+.game-card img {
+  width: 100%;
+  border-bottom: 1px solid #333;
+  display: block;
+}
+
+.game-card h3 {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1rem;
 }
 
 /* === FAVORITE ICON === */
@@ -245,13 +287,70 @@ body.light-mode #themeBtn {
   transition: transform 0.2s, background 0.3s;
 }
 
-.favorite-icon:hover {
-  transform: scale(1.2);
-  background: rgba(255, 255, 255, 0.3);
-}
-
 .favorite-icon.active {
   color: #ff3366;
+}
+
+/* === TABS === */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: #1a1a1a;
+  padding: 10px 0;
+}
+
+.tab-btn {
+  background: #222;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-btn.active {
+  background: #ffb84e;
+  color: #000;
+}
+
+/* === THEME TOGGLE === */
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 100;
+}
+
+#themeBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* LIGHT MODE */
+body.light-mode {
+  background: #f4f4f4;
+  color: #222;
+}
+
+body.light-mode .navbar {
+  background: #fff;
+  color: #000;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  padding: 20px;
 }
 
 /* === FAVORITES SECTION === */
