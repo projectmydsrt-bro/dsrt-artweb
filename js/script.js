@@ -1,158 +1,167 @@
-// ==============================
-// GAME DATA
-// ==============================
+// ===============================
+//  DUMMY GAME DATA (bisa diganti Supabase / API)
+// ===============================
 const games = [
   {
     id: 1,
-    title: "Galaxy Shooter",
-    image: "https://i.ibb.co/4V6H4tS/galaxy.jpg",
-    url: "https://html5.gamedistribution.com/xyz/shooter/index.html",
-    category: "Action",
+    title: "Cyber Runner",
+    image: "https://cdn.jsdelivr.net/gh/Bayuu7/assets@main/game1.jpg",
+    url: "https://example.com/games/cyberrunner",
   },
   {
     id: 2,
-    title: "Puzzle Quest",
-    image: "https://i.ibb.co/mJ8MRkJ/puzzle.jpg",
-    url: "https://html5.gamedistribution.com/xyz/puzzle/index.html",
-    category: "Puzzle",
+    title: "Pixel War",
+    image: "https://cdn.jsdelivr.net/gh/Bayuu7/assets@main/game2.jpg",
+    url: "https://example.com/games/pixelwar",
   },
   {
     id: 3,
-    title: "Car Racing 3D",
-    image: "https://i.ibb.co/vc2v9Lk/racing.jpg",
-    url: "https://html5.gamedistribution.com/xyz/racing/index.html",
-    category: "Racing",
+    title: "Drift King",
+    image: "https://cdn.jsdelivr.net/gh/Bayuu7/assets@main/game3.jpg",
+    url: "https://example.com/games/driftking",
   },
   {
     id: 4,
-    title: "Chess Online",
-    image: "https://i.ibb.co/7S5zT4C/chess.jpg",
-    url: "https://html5.gamedistribution.com/xyz/chess/index.html",
-    category: "Board",
+    title: "Space Shooter",
+    image: "https://cdn.jsdelivr.net/gh/Bayuu7/assets@main/game4.jpg",
+    url: "https://example.com/games/spaceshooter",
+  },
+  {
+    id: 5,
+    title: "Jungle Dash",
+    image: "https://cdn.jsdelivr.net/gh/Bayuu7/assets@main/game5.jpg",
+    url: "https://example.com/games/jungledash",
+  },
+  {
+    id: 6,
+    title: "Tower Defense",
+    image: "https://cdn.jsdelivr.net/gh/Bayuu7/assets@main/game6.jpg",
+    url: "https://example.com/games/towerdefense",
   },
 ];
 
-// ==============================
-// DOM ELEMENTS
-// ==============================
-const grid = document.querySelector(".game-grid");
-const searchInput = document.getElementById("search");
-const tabs = document.querySelectorAll(".tab-btn");
-const modal = document.getElementById("gameModal");
-const modalFrame = document.getElementById("modalFrame");
-const closeBtn = document.querySelector(".close");
-const leaderboardContainer = document.querySelector(".leaderboard-grid");
-const toggleBtn = document.getElementById("toggleMode");
-
-// ==============================
-// RENDER GAME CARDS
-// ==============================
-function renderGames(filter = "All", search = "") {
-  grid.innerHTML = "";
-
-  const filtered = games.filter(game => {
-    const matchCategory = filter === "All" || game.category === filter;
-    const matchSearch = game.title.toLowerCase().includes(search.toLowerCase());
-    return matchCategory && matchSearch;
-  });
-
-  filtered.forEach((game) => {
-    const card = document.createElement("div");
-    card.classList.add("game-card");
-    card.innerHTML = `
-      <img src="${game.image}" alt="${game.title}">
-      <h4>${game.title}</h4>
-    `;
-    card.onclick = () => openModal(game);
-    grid.appendChild(card);
-  });
-}
-
-// ==============================
-// SEARCH FUNCTIONALITY
-// ==============================
-searchInput.addEventListener("input", (e) => {
-  renderGames(getActiveCategory(), e.target.value);
-});
-
-// ==============================
-// CATEGORY TABS
-// ==============================
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-    const category = tab.textContent;
-    renderGames(category);
-  });
-});
-
-function getActiveCategory() {
-  const active = document.querySelector(".tab-btn.active");
-  return active ? active.textContent : "All";
-}
-
-// ==============================
-// MODAL FUNCTION
-// ==============================
-function openModal(game) {
-  modal.style.display = "flex";
-  modalFrame.src = game.url;
-}
-
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-  modalFrame.src = "";
-};
-
-window.onclick = function(event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
-    modalFrame.src = "";
-  }
-};
-
-// ==============================
-// LEADERBOARD DUMMY DATA
-// ==============================
-const leaderboard = [
-  { name: "Bayu", score: 920 },
-  { name: "Dewi", score: 850 },
-  { name: "Rian", score: 800 },
-  { name: "Luna", score: 750 },
-  { name: "Arka", score: 700 },
+// ===============================
+//  LEADERBOARD DATA
+// ===============================
+const leaderboardData = [
+  { rank: 1, user: "PlayerX", score: 9420 },
+  { rank: 2, user: "Neo", score: 8120 },
+  { rank: 3, user: "Ghost", score: 7520 },
+  { rank: 4, user: "Astra", score: 6890 },
+  { rank: 5, user: "Nova", score: 6030 },
 ];
 
-function renderLeaderboard() {
-  leaderboardContainer.innerHTML = "";
-  leaderboard.forEach((player, index) => {
-    const div = document.createElement("div");
-    div.classList.add("leaderboard-item");
-    div.innerHTML = `<span>#${index + 1} ${player.name}</span><span>${player.score}</span>`;
-    leaderboardContainer.appendChild(div);
-  });
+// ===============================
+//  RENDER GAMES
+// ===============================
+function renderGames() {
+  const grid = document.querySelector(".game-grid");
+  grid.innerHTML = games
+    .map(
+      (g) => `
+      <div class="game-card" onclick="openGame(${g.id})">
+        <img src="${g.image}" alt="${g.title}" />
+        <h4>${g.title}</h4>
+      </div>
+    `
+    )
+    .join("");
 }
 
-// ==============================
-// DARK/LIGHT MODE TOGGLE
-// ==============================
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-  if (document.body.classList.contains("light-mode")) {
-    document.body.style.background = "linear-gradient(135deg, #f5f5f5, #ffffff)";
-    document.body.style.color = "#222";
-    toggleBtn.textContent = "🌙 Dark Mode";
+// ===============================
+//  RENDER LEADERBOARD
+// ===============================
+function renderLeaderboard() {
+  const lb = document.querySelector(".leaderboard-grid");
+  lb.innerHTML = leaderboardData
+    .map(
+      (item) => `
+    <div class="leaderboard-item">
+      <span>#${item.rank} ${item.user}</span>
+      <span>${item.score}</span>
+    </div>`
+    )
+    .join("");
+}
+
+// ===============================
+//  GAME MODAL HANDLING
+// ===============================
+const modal = document.getElementById("gameModal");
+const gameFrame = document.getElementById("gameFrame");
+const modalTitle = document.querySelector(".modal-title");
+const modalThumb = document.querySelector(".modal-thumb");
+const loadingOverlay = document.querySelector(".loading-overlay");
+
+function openGame(id) {
+  const game = games.find((g) => g.id === id);
+  if (!game) return;
+
+  modalTitle.textContent = game.title;
+  modalThumb.src = game.image;
+  gameFrame.src = ""; // reset dulu
+  modal.style.display = "flex";
+
+  loadingOverlay.style.display = "flex";
+  setTimeout(() => {
+    gameFrame.src = game.url;
+    loadingOverlay.style.display = "none";
+  }, 1000);
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  gameFrame.src = "";
+}
+
+// BACK BUTTON (KEMBALI KE HALAMAN)
+function goBack() {
+  closeModal();
+}
+
+// FULLSCREEN TOGGLE
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    gameFrame.requestFullscreen().catch((err) => {
+      console.warn("Fullscreen error:", err);
+    });
   } else {
-    document.body.style.background = "linear-gradient(135deg, #12071d, #1b0930)";
-    document.body.style.color = "#fff";
-    toggleBtn.textContent = "☀️ Light Mode";
+    document.exitFullscreen();
   }
+}
+
+// ===============================
+//  TABS
+// ===============================
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+tabButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const target = btn.getAttribute("data-tab");
+
+    tabButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    tabContents.forEach((c) =>
+      c.classList.toggle("active", c.id === target)
+    );
+  });
 });
 
-// ==============================
-// INIT APP
-// ==============================
-renderGames();
-renderLeaderboard();
+// ===============================
+//  THEME TOGGLE
+// ===============================
+const toggleBtn = document.getElementById("toggleTheme");
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  toggleBtn.innerHTML = document.body.classList.contains("light") ? "🌞" : "🌙";
+});
 
-console.log("🚀 Game Portal Loaded Successfully!");
+// ===============================
+//  INIT
+// ===============================
+window.addEventListener("DOMContentLoaded", () => {
+  renderGames();
+  renderLeaderboard();
+});
