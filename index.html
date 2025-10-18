@@ -1,61 +1,70 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Arcade Sprint — HTML5 Game</title>
+  <title>DSRT Games — Portal HTML5</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="wrap">
-      <h1 class="title">Arcade Sprint</h1>
-      <nav class="menu">
-        <button id="btnStart" class="btn">Start</button>
-        <button id="btnPause" class="btn">Pause</button>
-        <button id="btnReset" class="btn">Reset</button>
-      </nav>
+      <a class="brand" href="#">DSRT<span class="dot">•</span>Games</a>
+      <div class="top-actions">
+        <input id="search" class="search" placeholder="Cari game..." />
+        <button id="profileBtn" class="icon-btn">≡</button>
+      </div>
     </div>
   </header>
 
-  <main class="main">
-    <section class="game-area">
-      <canvas id="gameCanvas" width="800" height="450" aria-label="Game canvas"></canvas>
-      <div class="hud">
-        <div class="score">Score: <span id="score">0</span></div>
-        <div class="info">Lives: <span id="lives">3</span></div>
+  <main class="wrap content">
+    <!-- Featured carousel -->
+    <section class="carousel-section card">
+      <h2 class="section-title">Game Unggulan</h2>
+      <div class="carousel" id="carousel">
+        <button class="car-arrow left" data-dir="-1" aria-label="Prev">‹</button>
+        <div class="car-track" id="carTrack">
+          <!-- slides injected by JS -->
+        </div>
+        <button class="car-arrow right" data-dir="1" aria-label="Next">›</button>
       </div>
     </section>
 
-    <aside class="panel">
-      <section class="instructions card">
-        <h2>Instructions</h2>
-        <ul>
-          <li>Click <strong>Start</strong> or press <kbd>Space</kbd> to jump.</li>
-          <li>Avoid obstacles. Survive as long as possible to get high score.</li>
-          <li>Submit your score to the local leaderboard.</li>
-        </ul>
-      </section>
-
-      <section class="leaderboard card">
-        <h2>Local Leaderboard</h2>
-        <ol id="leaderList"></ol>
-
-        <form id="scoreForm" class="score-form">
-          <input id="playerName" placeholder="Your name" maxlength="20" required>
-          <input id="playerScore" type="number" placeholder="Score" required>
-          <button class="btn" type="submit">Submit</button>
-        </form>
-
-        <button id="clearScores" class="btn ghost">Clear</button>
-      </section>
-    </aside>
+    <!-- Personalized picks -->
+    <section class="grid-section">
+      <h3 class="section-title">Pilihan terbaik untuk Anda</h3>
+      <div class="grid" id="gameGrid">
+        <!-- cards injected by JS -->
+      </div>
+    </section>
   </main>
 
-  <footer class="foot">
-    <div class="wrap">© Arcade Sprint — Pure HTML5 Game • <span id="year"></span></div>
+  <!-- Modal player -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button id="closeModal" class="modal-close" aria-label="Close">✕</button>
+      <div class="modal-body">
+        <iframe id="gameFrame" src="" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
+        <div class="playbar">
+          <div class="playbar-left">
+            <img id="modalThumb" src="assets/images/placeholder.png" alt="" class="thumb">
+            <div class="meta">
+              <div id="modalTitle" class="title">Game Title</div>
+              <div id="modalCategory" class="cat">Puzzle</div>
+            </div>
+          </div>
+          <div class="playbar-right">
+            <button id="openExtern" class="btn ghost">Buka di Tab Baru</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot wrap">
+    <div>© DSRT Games — HTML5 Portal</div>
   </footer>
 
-  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
