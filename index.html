@@ -3,68 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DSRT Games — Portal HTML5</title>
+  <title>DSRT Games — HTML5 Portal</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <a class="brand" href="#">DSRT<span class="dot">•</span>Games</a>
-      <div class="top-actions">
-        <input id="search" class="search" placeholder="Cari game..." />
-        <button id="profileBtn" class="icon-btn">≡</button>
-      </div>
-    </div>
+  <header class="navbar">
+    <div class="brand">DSRT <span class="dot">•</span> <b>Games</b></div>
+    <input type="text" placeholder="Cari game..." id="searchInput">
+    <div class="menu-icon">☰</div>
   </header>
 
-  <main class="wrap content">
-    <!-- Featured carousel -->
-    <section class="carousel-section card">
-      <h2 class="section-title">Game Unggulan</h2>
-      <div class="carousel" id="carousel">
-        <button class="car-arrow left" data-dir="-1" aria-label="Prev">‹</button>
-        <div class="car-track" id="carTrack">
-          <!-- slides injected by JS -->
-        </div>
-        <button class="car-arrow right" data-dir="1" aria-label="Next">›</button>
-      </div>
-    </section>
+  <section class="featured">
+    <h2>🌟 Game Unggulan</h2>
+    <div class="carousel" id="featuredContainer"></div>
+  </section>
 
-    <!-- Personalized picks -->
-    <section class="grid-section">
-      <h3 class="section-title">Pilihan terbaik untuk Anda</h3>
-      <div class="grid" id="gameGrid">
-        <!-- cards injected by JS -->
-      </div>
-    </section>
-  </main>
+  <section class="best">
+    <h2>🔥 Pilihan Terbaik untuk Anda</h2>
+    <div class="game-grid" id="gameGrid"></div>
+  </section>
 
-  <!-- Modal player -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-inner">
-      <button id="closeModal" class="modal-close" aria-label="Close">✕</button>
-      <div class="modal-body">
-        <iframe id="gameFrame" src="" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
-        <div class="playbar">
-          <div class="playbar-left">
-            <img id="modalThumb" src="assets/images/placeholder.png" alt="" class="thumb">
-            <div class="meta">
-              <div id="modalTitle" class="title">Game Title</div>
-              <div id="modalCategory" class="cat">Puzzle</div>
-            </div>
-          </div>
-          <div class="playbar-right">
-            <button id="openExtern" class="btn ghost">Buka di Tab Baru</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer class="foot wrap">
-    <div>© DSRT Games — HTML5 Portal</div>
+  <footer>
+    © DSRT Games — HTML5 Portal
   </footer>
 
+  <script src="js/games.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
