@@ -1,13 +1,61 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DSRT Game Portal</title>
-    <meta name="description" content="DSRT HTML5 Game Portal" />
-  </head>
-  <body class="bg-neutral-950 text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arcade Sprint — HTML5 Game</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1 class="title">Arcade Sprint</h1>
+      <nav class="menu">
+        <button id="btnStart" class="btn">Start</button>
+        <button id="btnPause" class="btn">Pause</button>
+        <button id="btnReset" class="btn">Reset</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="game-area">
+      <canvas id="gameCanvas" width="800" height="450" aria-label="Game canvas"></canvas>
+      <div class="hud">
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="info">Lives: <span id="lives">3</span></div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <section class="instructions card">
+        <h2>Instructions</h2>
+        <ul>
+          <li>Click <strong>Start</strong> or press <kbd>Space</kbd> to jump.</li>
+          <li>Avoid obstacles. Survive as long as possible to get high score.</li>
+          <li>Submit your score to the local leaderboard.</li>
+        </ul>
+      </section>
+
+      <section class="leaderboard card">
+        <h2>Local Leaderboard</h2>
+        <ol id="leaderList"></ol>
+
+        <form id="scoreForm" class="score-form">
+          <input id="playerName" placeholder="Your name" maxlength="20" required>
+          <input id="playerScore" type="number" placeholder="Score" required>
+          <button class="btn" type="submit">Submit</button>
+        </form>
+
+        <button id="clearScores" class="btn ghost">Clear</button>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">© Arcade Sprint — Pure HTML5 Game • <span id="year"></span></div>
+  </footer>
+
+  <script src="js/game.js"></script>
+</body>
 </html>
