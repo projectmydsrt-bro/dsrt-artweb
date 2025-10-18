@@ -1,49 +1,75 @@
-/* Pure new project CSS — no relation to any prior project */
-/* Simple clean layout for desktop & mobile */
-
+/* Clean modern dark portal — fresh project CSS (no relation) */
 :root{
-  --bg:#0b1220;
-  --panel:#0f1724;
-  --muted:#94a3b8;
-  --accent:#f6c94a;
-  --white:#eef2ff;
+  --bg:#07080b;
+  --panel:#0f1316;
+  --muted:#9aa6b2;
+  --accent:#ffb86b;
+  --accent-2:#7afcff;
+  --glass: rgba(255,255,255,0.03);
+  --radius:14px;
 }
 
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
-body{background:linear-gradient(180deg,#06111a 0%,var(--bg) 100%);color:var(--white);-webkit-font-smoothing:antialiased;}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+body{background:linear-gradient(180deg,#061018 0%, var(--bg) 100%);color:#e6eef8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:18px}
 
-.wrap{max-width:1100px;margin:0 auto;padding:12px 20px}
-.topbar{border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(4px)}
-.title{margin:0;font-size:20px;color:var(--accent);display:inline-block}
-.menu{float:right}
-.menu .btn{margin-left:8px}
+/* Topbar */
+.topbar{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(2,4,8,0.6),rgba(2,4,8,0.2));backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.02)}
+.topbar .wrap{display:flex;align-items:center;gap:12px}
+.brand{font-weight:800;color:var(--accent);text-decoration:none;font-size:20px}
+.brand .dot{color:var(--accent-2);margin-left:6px}
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+.search{background:var(--panel);border:0;padding:8px 12px;border-radius:10px;color:var(--muted);min-width:220px}
+.icon-btn{background:var(--panel);border:0;color:var(--muted);padding:8px 10px;border-radius:10px}
 
-/* Buttons */
-.btn{background:var(--accent);color:#091018;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+/* Content */
+.content{padding-top:20px;padding-bottom:40px;display:grid;gap:18px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
 
-/* Layout */
-.main{display:grid;grid-template-columns: 1fr 320px;gap:18px;padding:20px;align-items:start}
-@media(max-width:920px){.main{grid-template-columns:1fr}}
-.game-area{position:relative;display:flex;flex-direction:column;align-items:center}
-canvas{width:100%;max-width:100%;border-radius:10px;box-shadow:0 14px 40px rgba(2,6,23,0.6);background:linear-gradient(180deg,#071827,#05202b)}
-.hud{position:absolute;left:18px;top:18px;display:flex;gap:12px}
-.hud .score,.hud .info{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:8px;font-weight:700}
+/* Carousel */
+.carousel{position:relative;overflow:hidden;border-radius:12px;margin-top:10px}
+.car-track{display:flex;gap:14px;padding:16px;transition:transform .36s cubic-bezier(.2,.9,.2,1);align-items:center}
+.car-slide{min-width:320px;max-width:420px;border-radius:12px;overflow:hidden;position:relative;background:linear-gradient(180deg,#0b1a26,#081219);box-shadow:inset 0 -40px 80px rgba(0,0,0,0.35)}
+.car-slide img{display:block;width:100%;height:250px;object-fit:cover}
+.car-slide .label{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);padding:8px 12px;border-radius:10px;font-weight:700}
+.car-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(2,6,23,0.6);border:0;color:var(--accent);width:44px;height:44px;border-radius:999px;cursor:pointer;z-index:5}
+.car-arrow.left{left:10px}
+.car-arrow.right{right:10px}
 
-/* Sidebar */
-.panel{padding-right:6px}
-.card{background:var(--panel);padding:14px;border-radius:10px;margin-bottom:14px;box-shadow:0 8px 18px rgba(2,6,23,0.5)}
-.instructions ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
-.leaderboard ol{padding-left:18px;margin:0 0 8px 0}
+/* Grid */
+.section-title{font-size:18px;margin:0 0 8px;color:var(--accent)}
+.grid-section{margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.card-game{background:var(--panel);padding:12px;border-radius:12px;text-align:center;cursor:pointer;transition:transform .18s, box-shadow .18s;display:flex;flex-direction:column;gap:10px;align-items:center}
+.card-game:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
+.card-game img{width:100%;height:120px;object-fit:cover;border-radius:10px}
+.card-game .g-title{font-weight:700;color:#fff}
+.card-game .g-sub{color:var(--muted);font-size:13px}
 
-/* Form */
-.score-form{display:flex;gap:8px;flex-direction:column}
-.score-form input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
-.score-form button{align-self:flex-start}
+/* Modal */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));z-index:80;padding:20px}
+.modal[aria-hidden="false"]{display:flex}
+.modal-inner{width:100%;max-width:1100px;background:var(--panel);border-radius:12px;overflow:hidden}
+.modal-body{display:flex;flex-direction:column}
+.modal-close{position:absolute;right:26px;top:26px;background:transparent;border:0;color:#fff;font-size:20px;padding:6px 10px}
+.modal-body iframe{width:100%;height:560px;border:0;background:#000}
+.playbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid rgba(255,255,255,0.02)}
+.playbar .thumb{width:56px;height:56px;border-radius:8px;object-fit:cover;margin-right:10px}
+.playbar .meta .title{font-weight:800}
+.playbar .meta .cat{color:var(--muted);font-size:13px}
+.playbar-right .btn{padding:8px 12px}
 
 /* Footer */
-.foot{padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);text-align:center;color:rgba(255,255,255,0.5)}
+.foot{padding:22px 0;text-align:center;color:rgba(255,255,255,0.45)}
 
-/* Small helpers */
-kbd{background:rgba(255,255,255,0.04);padding:2px 6px;border-radius:6px;font-size:13px}
+/* Responsive */
+@media (max-width:920px){
+  .car-slide img{height:180px}
+  .modal-body iframe{height:420px}
+}
+@media (max-width:560px){
+  .car-track{padding:12px}
+  .search{min-width:120px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+           }
