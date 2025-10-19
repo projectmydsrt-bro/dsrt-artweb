@@ -1,37 +1,37 @@
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import games from '../data/games';
 
 export default function GameDetail() {
   const { id } = useParams();
-  const game = games.find(g => g.id === parseInt(id));
+  const game = games.find((g) => String(g.id) === String(id));
 
   if (!game) {
     return (
-      <div className="text-center text-gray-400 pt-32">
-        <h2>Game tidak ditemukan 😢</h2>
-        <Link to="/" className="text-violet-400 underline">Kembali ke beranda</Link>
+      <div className="pt-32 text-center">
+        <h2 className="text-xl text-gray-300">Game tidak ditemukan</h2>
+        <Link to="/" className="text-[#7C3AED] mt-4 inline-block">Kembali ke beranda</Link>
       </div>
     );
   }
 
   return (
-    <div className="pt-28 px-6 max-w-5xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-10 items-start">
-        <img src={game.image} alt={game.title} className="rounded-2xl shadow-lg w-full md:w-1/2 object-cover" />
-        <div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 to-cyan-400 text-transparent bg-clip-text">{game.title}</h1>
-          <p className="text-gray-400 mt-3">{game.genre} • ⭐ {game.rating}</p>
-          <p className="mt-6 text-gray-300 leading-relaxed">{game.desc}</p>
-          <div className="mt-8 flex gap-4">
-            <button className="px-6 py-3 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-xl font-semibold hover:scale-105 transition">
-              ▶️ Mainkan Sekarang
-            </button>
-            <Link to="/" className="px-6 py-3 border border-white/20 rounded-xl text-gray-300 hover:border-violet-500 transition">
-              ← Kembali
-            </Link>
+    <main className="pt-28 pb-12">
+      <div className="max-w-6xl mx-auto px-4">
+        <h1 className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#7C3AED] to-[#06b6d4]">
+          {game.title}
+        </h1>
+        <p className="text-sm text-gray-400 mt-2">{game.genre} • ⭐ {game.rating}</p>
+        <p className="mt-4 text-gray-300">{game.desc}</p>
+
+        <div className="mt-6">
+          <div className="relative w-full aspect-[16/9] border border-white/5 rounded-2xl overflow-hidden bg-black">
+            <iframe src={game.path} title={game.title} className="w-full h-full" allowFullScreen sandbox="allow-scripts allow-same-origin"></iframe>
           </div>
         </div>
+
+        <Link to="/" className="inline-block mt-6 text-[#7C3AED] hover:underline">← Kembali</Link>
       </div>
-    </div>
+    </main>
   );
 }
