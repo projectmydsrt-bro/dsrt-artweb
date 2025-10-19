@@ -1,16 +1,21 @@
-import React from 'react';
 import GameCard from './GameCard';
-import games from '../data/games';
+import gamesData from '../data/games';
+import { useState } from 'react';
 
-export default function GameGrid() {
+export default function GameGrid({ search }) {
+  const [games] = useState(gamesData);
+
+  const filtered = games.filter(g =>
+    g.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <section className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-lg font-semibold text-white mb-4">Rekomendasi Untukmu</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {games.map((g, i) => (
-          <GameCard key={i} game={g} />
-        ))}
-      </div>
+    <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 p-6 transition-all">
+      {filtered.length > 0 ? (
+        filtered.map((game, i) => <GameCard key={i} game={game} />)
+      ) : (
+        <p className="text-gray-400 text-center col-span-full">Tidak ada game ditemukan 😢</p>
+      )}
     </section>
   );
 }
