@@ -1,34 +1,39 @@
-import { Heart, Star } from "lucide-react";
-import { Howl } from "howler";
-import hoverSound from "../assets/hover.mp3";
-import clickSound from "../assets/click.mp3";
+import React from 'react';
+import { Star } from 'lucide-react';
+import { Howl } from 'howler';
+import hoverSfx from '../../public/sounds/hover.mp3'; // optional - if you add sounds in public/sounds/
+import clickSfx from '../../public/sounds/click.mp3';
+import { Link } from 'react-router-dom';
 
+// Note: If you don't add sounds, Howl will throw — either remove sound code or place sound files in public/sounds/
 export default function GameCard({ game }) {
-  const playHover = () => new Howl({ src: [hoverSound], volume: 0.2 }).play();
-  const playClick = () => new Howl({ src: [clickSound], volume: 0.3 }).play();
+  const playHover = () => {
+    try { new Howl({ src: [hoverSfx], volume: 0.12 }).play(); } catch {}
+  };
+  const playClick = () => {
+    try { new Howl({ src: [clickSfx], volume: 0.2 }).play(); } catch {}
+  };
 
   return (
-    <div
-      onMouseEnter={playHover}
-      className="bg-surface rounded-2xl overflow-hidden shadow hover:shadow-glow transition-transform hover:-translate-y-1 hover:scale-[1.03]"
-    >
-      <img src={game.image} alt={game.title} className="w-full h-40 object-cover" />
-      <div className="p-3">
-        <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-lg text-white">{game.title}</h3>
-          <Star size={16} className="text-yellow-400" />
+    <Link to={`/game/${game.id}`} onClick={playClick} className="block">
+      <article onMouseEnter={playHover} className="group bg-[#0e1118] rounded-2xl overflow-hidden border border-white/6 hover:shadow-dsrt-glow transition transform hover:-translate-y-1 hover:scale-[1.02]">
+        <div className="w-full aspect-[16/9] overflow-hidden">
+          <img src={game.image} alt={game.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
-        <p className="text-sm text-blue-300">{game.genre}</p>
-        <div className="flex justify-between mt-2">
-          <button
-            onClick={playClick}
-            className="px-3 py-1 bg-primary rounded-md text-sm text-white hover:scale-105 transition"
-          >
-            Play
-          </button>
-          <Heart size={16} className="text-gray-400 hover:text-glow transition" />
+        <div className="p-4">
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-white">{game.title}</h3>
+            <div className="text-sm text-yellow-400 flex items-center gap-1">
+              <Star size={14} /> {game.rating}
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 mt-1">{game.genre}</p>
+          <div className="mt-4 flex items-center justify-between">
+            <button className="px-3 py-1 rounded-md bg-gradient-to-r from-[#7C3AED] to-[#06b6d4] text-xs font-semibold">Play</button>
+            <button className="p-2 rounded-md bg-white/5 text-gray-300 hover:bg-white/8">❤</button>
+          </div>
         </div>
-      </div>
-    </div>
+      </article>
+    </Link>
   );
 }
