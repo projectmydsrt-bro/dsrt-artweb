@@ -1,8 +1,8 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { Howl } from 'howler';
-import hoverSfx from '../../public/sounds/hover.mp3'; // optional - if you add sounds in public/sounds/
-import clickSfx from '../../public/sounds/click.mp3';
+import hoverSfx from "/sounds/hover.mp3";
+import clickSfx from "/sounds/click.mp3";
 import { Link } from 'react-router-dom';
 
 // Note: If you don't add sounds, Howl will throw — either remove sound code or place sound files in public/sounds/
